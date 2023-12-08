@@ -3,14 +3,33 @@ import React from "react";
 import Home from "./pages/Home";
 import "./App.css";
 import Header from "./components/Header";
-import { BrowserRouter } from "react-router-dom";
-import  st
-function App() {
+import {
+  BrowserRouter,
+  createBrowserRouter,
+  Route,
+  RouterProvider,
+  Routes,
+} from "react-router-dom";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import AddProduct from "./components/Products/AddProduct";
+import UpdateProduct from "./components/Products/UpdateProduct";
+
+const router = createBrowserRouter([{ path: "*", Component: Root }]);
+function Root() {
   return (
-    <BrowserRouter>
+    <div>
       <Header />
-    </BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login*" element={<Login />} />
+        <Route path="/register*" element={<Register />} />
+      </Routes>
+    </div>
   );
+}
+function App() {
+  return <RouterProvider router={router}></RouterProvider>;
 }
 
 export default App;
