@@ -1,14 +1,34 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { Navbar, Typography, Button } from "@material-tailwind/react";
+import { Link, useNavigate } from "react-router-dom";
+import {
+  Navbar,
+  Typography,
+  Button,
+  Menu,
+  MenuHandler,
+  MenuList,
+  MenuItem,
+} from "@material-tailwind/react";
 
 type Props = {};
 
 const NavList = (): JSX.Element => {
+  const navigate = useNavigate();
+  const user = localStorage.getItem("user-info")
+    ? JSON.parse(localStorage.getItem("user-info")!)
+    : undefined;
+
+  function signOut() {
+    localStorage.removeItem("user-info");
+    navigate("/signIn");
+  }
   return (
     <ul className="my-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6 [&>&>*]:text-red">
-      {localStorage.getItem("user-info") ? (
+      {user ? (
         <>
+          <Typography variant="h6" className="mr-4 cursor-pointer py-1.5">
+            Hello, {user.name}
+          </Typography>
           <Typography as="li" variant="small" color="blue-gray">
             <Link
               to="/add"
@@ -25,6 +45,14 @@ const NavList = (): JSX.Element => {
               Update Products
             </Link>
           </Typography>
+          <Menu>
+            <MenuHandler>
+              <Button>Account</Button>
+            </MenuHandler>
+            <MenuList>
+              <MenuItem onClick={signOut}>Sign Out</MenuItem>
+            </MenuList>
+          </Menu>
         </>
       ) : (
         <>
