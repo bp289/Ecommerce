@@ -28,7 +28,6 @@ function Root() {
           <Protected>
             <UpdateProduct />
           </Protected>
-          // <UpdateProduct />
         }
       />
       <Route
@@ -37,7 +36,6 @@ function Root() {
           <Protected>
             <AddProduct />
           </Protected>
-          // <AddProduct />}
         }
       />
     </Routes>
