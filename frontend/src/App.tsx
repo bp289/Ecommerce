@@ -1,5 +1,5 @@
 import React from "react";
-
+import Protected from "./Protected";
 import Home from "./pages/Home";
 import "./App.css";
 import Header from "./components/Header";
@@ -18,14 +18,29 @@ import UpdateProduct from "./components/Products/UpdateProduct";
 const router = createBrowserRouter([{ path: "*", Component: Root }]);
 function Root() {
   return (
-    <div>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login*" element={<Login />} />
-        <Route path="/register*" element={<Register />} />
-      </Routes>
-    </div>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/login*" element={<Login />} />
+      <Route path="/register*" element={<Register />} />
+      <Route
+        path="/update*"
+        element={
+          <Protected>
+            <UpdateProduct />
+          </Protected>
+          // <UpdateProduct />
+        }
+      />
+      <Route
+        path="/add*"
+        element={
+          <Protected>
+            <AddProduct />
+          </Protected>
+          // <AddProduct />}
+        }
+      />
+    </Routes>
   );
 }
 function App() {
