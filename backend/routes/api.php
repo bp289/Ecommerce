@@ -25,3 +25,5 @@ Route::post('register',[UserController::class, 'register']);
 Route::post('signIn', [UserController::class, 'signIn']);
 
 Route::post('addProduct', [ProductController::class,'addProduct']);
+
+Route::get('list', [ProductController::class, 'list']);
