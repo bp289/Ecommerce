@@ -2,6 +2,7 @@ import { Typography } from "@material-tailwind/react";
 import React, { useState, useEffect } from "react";
 import Header from "../components/Header";
 import ProductCard from "../components/ProductCard";
+import Search from "../components/Products/Search";
 
 type Props = {};
 
@@ -14,6 +15,7 @@ interface Product {
 }
 
 const ProductList = (props: Props) => {
+  const [search, setSearch] = useState<string>("");
   const [data, setData] = useState<Product[]>([]);
 
   const fetchProducts = async () => {
@@ -32,9 +34,23 @@ const ProductList = (props: Props) => {
     fetchProducts();
   };
 
+  async function performSearch(key: string) {
+    console.log(key);
+    const result = await fetch("http://localhost:8000/api/search/" + key);
+    const resultJson = await result.json();
+    setData(resultJson);
+    setData(resultJson);
+  }
+
   useEffect(() => {
-    fetchProducts();
-  }, []);
+    console.log(search);
+    if (!search) {
+      fetchProducts();
+    } else {
+      performSearch(search);
+    }
+  }, [search]);
+
   return (
     <>
       <Header />
@@ -42,6 +58,8 @@ const ProductList = (props: Props) => {
       <Typography className="ml-8 mt-12" variant="h2">
         Product Listing
       </Typography>
+
+      <Search search={search} setSearch={setSearch} />
       <div className="flex flex-wrap gap-20 flex-row">
         {data.map((item, index) => (
           <ProductCard

@@ -12,8 +12,8 @@ import {
 } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import AddProduct from "./components/Products/AddProduct";
-import UpdateProduct from "./components/Products/UpdateProduct";
+import AddProduct from "./pages/AddProduct";
+import UpdateProduct from "./pages/UpdateProduct";
 
 import ProductList from "./pages/ProductList";
 

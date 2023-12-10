@@ -46,14 +46,6 @@ const NavList = (): JSX.Element => {
               Add Items
             </Link>
           </Typography>
-          <Typography as="li" variant="small" color="blue-gray">
-            <Link
-              to="/update"
-              className="flex items-center hover:text-blue-500 transition-colors "
-            >
-              Update Items
-            </Link>
-          </Typography>
           <Menu>
             <MenuHandler>
               <Button>Account</Button>

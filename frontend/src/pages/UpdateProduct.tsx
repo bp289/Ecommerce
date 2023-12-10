@@ -8,7 +8,7 @@ import {
   Input,
   Typography,
 } from "@material-tailwind/react";
-import Header from "../Header";
+import Header from "../components/Header";
 
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -36,15 +36,18 @@ const UpdateProduct = (props: Props) => {
     try {
       const formData = new FormData();
 
-      formData.append("file", file!);
-      formData.append("price", price);
-      formData.append("name", name);
-      formData.append("description", description);
+      if (file) formData.append("file", file!);
+      if (price) formData.append("price", price);
+      if (name) formData.append("name", name);
+      if (description) formData.append("description", description);
 
-      const result = await fetch("http://localhost:8000/api/addProduct", {
-        method: "POST",
-        body: formData,
-      });
+      const result = await fetch(
+        `http://localhost:8000/api/update/${id}?_method=PUT`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
 
       if (result.ok) {
         setAlertMessage("success, Item added");
