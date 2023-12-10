@@ -25,7 +25,7 @@ function Root() {
       <Route path="/signIn*" element={<Login />} />
       <Route path="/register*" element={<Register />} />
       <Route
-        path="/update*"
+        path="/update/:id"
         element={
           <Protected>
             <UpdateProduct />

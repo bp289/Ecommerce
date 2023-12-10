@@ -27,7 +27,7 @@ const NavList = (): JSX.Element => {
       {user ? (
         <>
           <Typography variant="h6" className="mr-4 cursor-pointer py-1.5">
-            Hello, {user.name}
+            Hello, {user.name.charAt(0).toUpperCase() + user.name.slice(1)}
           </Typography>
 
           <Typography as="li" variant="small" color="blue-gray">

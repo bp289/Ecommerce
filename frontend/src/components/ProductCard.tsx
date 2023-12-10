@@ -9,9 +9,10 @@ import {
   AccordionBody,
   AccordionHeader,
 } from "@material-tailwind/react";
-import { TrashIcon } from "@heroicons/react/20/solid";
+import { TrashIcon, PencilSquareIcon } from "@heroicons/react/20/solid";
 import DeleteDialog from "./DeleteDialog";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 type Props = {
   id: number;
@@ -56,8 +57,13 @@ const ProductCard = ({
           />
         </CardHeader>
         <CardBody>
-          <Typography variant="h5" color="blue-gray" className="mb-2">
+          <Typography
+            variant="h5"
+            color="blue-gray"
+            className=" flex justify-between mb-2"
+          >
             {name}
+            <Chip className="w-fit" value={price} variant="ghost" />
           </Typography>
           <Accordion open={openAccordion} icon={<Icon open={openAccordion} />}>
             <AccordionHeader onClick={() => handleOpen()}>
@@ -69,10 +75,18 @@ const ProductCard = ({
           </Accordion>
         </CardBody>
         <CardFooter className="flex justify-between pt-0">
-          <Chip className="w-fit" value={price} variant="ghost" />
-          <button onClick={() => setOpenDialog(true)}>
-            <TrashIcon className="h-8 w-8 hover:text-red-400 hover:cursor-pointer hover:scale-110 hover:rotate-12 transition-transform duration-300" />
-          </button>
+          <div>
+            <button onClick={() => setOpenDialog(true)}>
+              <TrashIcon className="h-8 w-8 hover:text-red-400 hover:cursor-pointer hover:scale-110 hover:rotate-12 transition-transform duration-300" />
+            </button>
+          </div>
+          <div>
+            <button onClick={() => setOpenDialog(true)}>
+              <Link to={"/update/" + id}>
+                <PencilSquareIcon className="h-8 w-8 hover:text-blue-400 hover:cursor-pointer hover:scale-110 hover:rotate-12 transition-transform duration-300" />
+              </Link>
+            </button>
+          </div>
         </CardFooter>
       </Card>
     </>

@@ -19,7 +19,7 @@ const ProductList = (props: Props) => {
   const fetchProducts = async () => {
     const result = await fetch("http://localhost:8000/api/list");
     const resultJson = await result.json();
-    console.log(resultJson);
+
     setData(resultJson);
   };
 
@@ -28,7 +28,6 @@ const ProductList = (props: Props) => {
       method: "DELETE",
     });
 
-    const resultJson = await result.json();
     console.warn(result);
     fetchProducts();
   };
