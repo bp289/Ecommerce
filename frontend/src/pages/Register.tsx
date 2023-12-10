@@ -1,6 +1,6 @@
 import { Typography, Input, Button, Checkbox } from "@material-tailwind/react";
 import { useNavigate } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
 
@@ -14,7 +14,7 @@ const Register = (props: Props) => {
 
   useEffect(() => {
     if (localStorage.getItem("user-info")) {
-      navigate("/add");
+      navigate("/");
     }
   });
 
@@ -32,7 +32,7 @@ const Register = (props: Props) => {
 
       const resultJson = await result.json();
       localStorage.setItem("user-info", JSON.stringify(resultJson));
-      navigate("/add");
+      navigate("/");
     } catch (e) {
       console.error(e);
       throw e;

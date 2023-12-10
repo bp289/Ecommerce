@@ -13,7 +13,7 @@ const Login = (props: Props) => {
 
   useEffect(() => {
     if (localStorage.getItem("user-info")) {
-      navigate("/add");
+      navigate("/");
     }
   });
   const SignIn = async () => {
@@ -30,7 +30,7 @@ const Login = (props: Props) => {
 
       const resultJson = await result.json();
       localStorage.setItem("user-info", JSON.stringify(resultJson));
-      navigate("/add");
+      navigate("/");
     } catch (e) {
       console.error(e);
       throw e;

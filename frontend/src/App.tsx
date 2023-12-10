@@ -15,11 +15,13 @@ import Register from "./pages/Register";
 import AddProduct from "./components/Products/AddProduct";
 import UpdateProduct from "./components/Products/UpdateProduct";
 
+import ProductList from "./pages/ProductList";
+
 const router = createBrowserRouter([{ path: "*", Component: Root }]);
 function Root() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
+      <Route path="/" element={<ProductList />} />
       <Route path="/signIn*" element={<Login />} />
       <Route path="/register*" element={<Register />} />
       <Route

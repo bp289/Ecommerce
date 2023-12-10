@@ -20,11 +20,13 @@ const AddProduct = (props: Props) => {
     formData.append("name", name);
     formData.append("description", description);
 
-    const result = await fetch("http://localhost:8000/api/addproduct", {
+    const result = await fetch("http://localhost:8000/api/addProduct", {
       method: "POST",
       body: formData,
     });
-    alert("Data was saved");
+
+    const resultJson = await JSON.stringify(result);
+    alert(resultJson);
   }
   return (
     <div>

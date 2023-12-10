@@ -29,12 +29,21 @@ const NavList = (): JSX.Element => {
           <Typography variant="h6" className="mr-4 cursor-pointer py-1.5">
             Hello, {user.name}
           </Typography>
+
+          <Typography as="li" variant="small" color="blue-gray">
+            <Link
+              to="/"
+              className="flex items-center hover:text-blue-500 transition-colors "
+            >
+              Product Listing
+            </Link>
+          </Typography>
           <Typography as="li" variant="small" color="blue-gray">
             <Link
               to="/add"
               className="flex items-center hover:text-blue-500 transition-colors "
             >
-              Add Products
+              Add Items
             </Link>
           </Typography>
           <Typography as="li" variant="small" color="blue-gray">
@@ -42,7 +51,7 @@ const NavList = (): JSX.Element => {
               to="/update"
               className="flex items-center hover:text-blue-500 transition-colors "
             >
-              Update Products
+              Update Items
             </Link>
           </Typography>
           <Menu>
