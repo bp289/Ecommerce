@@ -26,11 +26,12 @@ class ProductController extends Controller
         $product->file_path = $req->file('file')->store('products');
         $product->save();
 
-        return response()->json(['product' => $product->name, 'message' => 'Product created successfully'], 201);
-         } catch (ValidationException $e) {
+        return response('Product Created succesfully', 200);
+        } catch (ValidationException $e) {
 
-        return response()->json(['error' => $e->errors()], 400);
-    }
+            $message = $e->errors();
+            return response($message, 400);
+        }
 
     }
 
