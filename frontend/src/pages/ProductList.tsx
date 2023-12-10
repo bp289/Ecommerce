@@ -55,12 +55,15 @@ const ProductList = (props: Props) => {
     <>
       <Header />
 
-      <Typography className="ml-8 mt-12" variant="h2">
-        Product Listing
-      </Typography>
+      <div className="flex mt-12 mx-10 md:mx-44  justify-between flex-wrap">
+        <div>
+          <Typography variant="h2">Product Listings</Typography>
+        </div>
 
-      <Search search={search} setSearch={setSearch} />
-      <div className="flex flex-wrap gap-20 flex-row">
+        <Search search={search} setSearch={setSearch} />
+      </div>
+
+      <div className="flex flex-wrap gap-20 justify-start mx-44 mt-8 flex-row">
         {data.map((item, index) => (
           <ProductCard
             id={item.id}

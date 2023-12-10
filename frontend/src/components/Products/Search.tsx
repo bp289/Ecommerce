@@ -9,8 +9,9 @@ type Props = {
 const Search = ({ search, setSearch }: Props) => {
   const [term, setTerm] = useState("");
   return (
-    <div className="mb-1 flex gap-6 m-auto">
+    <div className=" mt-12 w-full lg:w-[50rem] mb-1 flex flex-col lg:flex-row lg:mt-0 items-center gap-6 ">
       <Input
+        className="flex-grow w-full"
         crossOrigin={undefined}
         value={term}
         type="text"
@@ -24,7 +25,9 @@ const Search = ({ search, setSearch }: Props) => {
           setTerm(e.target.value);
         }}
       />
-      <Button onClick={() => setSearch(term)}>Search</Button>
+      <Button className="w-full lg:w-24" onClick={() => setSearch(term)}>
+        Search
+      </Button>
     </div>
   );
 };
