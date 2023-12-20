@@ -1,10 +1,7 @@
-import React from "react";
 import Protected from "./Protected";
-import Home from "./pages/Home";
 import "./App.css";
-import Header from "./components/Header";
+
 import {
-  BrowserRouter,
   createBrowserRouter,
   Route,
   RouterProvider,
@@ -16,12 +13,21 @@ import AddProduct from "./pages/AddProduct";
 import UpdateProduct from "./pages/UpdateProduct";
 
 import ProductList from "./pages/ProductList";
+import { Home } from "./pages/Home";
 
 const router = createBrowserRouter([{ path: "*", Component: Root }]);
 function Root() {
   return (
     <Routes>
-      <Route path="/" element={<ProductList />} />
+      <Route path="/" element={<Home />} />
+      <Route
+        path="/userListing"
+        element={
+          <Protected>
+            <ProductList />
+          </Protected>
+        }
+      />
       <Route path="/signIn*" element={<Login />} />
       <Route path="/register*" element={<Register />} />
       <Route

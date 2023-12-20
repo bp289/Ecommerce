@@ -1,11 +1,11 @@
 import {
   Button,
-  Card,
   Dialog,
   DialogBody,
   DialogFooter,
   DialogHeader,
   Input,
+  Textarea,
   Typography,
 } from "@material-tailwind/react";
 import Header from "../components/Header";
@@ -91,47 +91,51 @@ const UpdateProduct = (props: Props) => {
       <Header />
 
       {data && (
-        <>
-          <Typography variant="h1">Update {data.id}</Typography>
-          <Card>
-            <Input
-              label="name"
-              crossOrigin={undefined}
-              type="text"
-              defaultValue={data!.name}
-              onChange={(e) => setName(e.target.value)}
-              className="form-control"
-            ></Input>
+        <div className="max-w-[1700px] lg:mx-auto mt-12 mb-6 md:max-w-[1700px]">
+          <div className="flex flex-col justify-start items-start md:w-[50rem] gap-10">
+            <Typography variant="h1">
+              Update {data.name} ({data.id})
+            </Typography>
+            <div className="flex flex-col justify-start items-start md:w-[50rem] gap-10">
+              <Input
+                label="name"
+                crossOrigin={undefined}
+                type="text"
+                defaultValue={data!.name}
+                onChange={(e) => setName(e.target.value)}
+                className="form-control"
+              ></Input>
 
-            <Input
-              label="price"
-              crossOrigin={undefined}
-              type="text"
-              className="form-control"
-              defaultValue={data!.price}
-              onChange={(e) => setPrice(e.target.value)}
-            ></Input>
-            <Input
-              label="description"
-              crossOrigin={undefined}
-              type="text"
-              defaultValue={data!.description}
-              onChange={(e) => setDescription(e.target.value)}
-              className="form-control"
-            ></Input>
+              <Input
+                label="price"
+                crossOrigin={undefined}
+                type="text"
+                className="form-control"
+                defaultValue={data!.price}
+                onChange={(e) => setPrice(e.target.value)}
+              ></Input>
+              <Textarea
+                label="description"
+                resize={true}
+                defaultValue={data!.description}
+                onChange={(e) => setDescription(e.target.value)}
+                className="form-control"
+              ></Textarea>
+            </div>
+
             <input
               type="file"
               onChange={(e) => setFile(e.target.files![0])}
               defaultValue={data!.file_path}
             ></input>
             <img
-              className=" h-[400px] w-[400px]"
+              className=" h-[500px] w-[500px] object-cover"
               alt="file"
               src={"http://localhost:8000/" + data!.file_path}
             ></img>
             <Button onClick={updateProduct}>Update Item</Button>
-          </Card>
-        </>
+          </div>
+        </div>
       )}
     </>
   );

@@ -14,14 +14,22 @@ interface Product {
   id: number;
 }
 
+interface userInfo {
+  id: number;
+}
+
 const ProductList = (props: Props) => {
   const [search, setSearch] = useState<string>("");
   const [data, setData] = useState<Product[]>([]);
 
   const fetchProducts = async () => {
-    const result = await fetch("http://localhost:8000/api/list");
+    const userInfo = JSON.parse(
+      localStorage.getItem("user-info") as string
+    ) as userInfo;
+    console.log(userInfo["id"]);
+    const result = await fetch(`http://localhost:8000/api/list/${userInfo.id}`);
     const resultJson = await result.json();
-
+    console.log(resultJson);
     setData(resultJson);
   };
 
@@ -43,7 +51,6 @@ const ProductList = (props: Props) => {
   }
 
   useEffect(() => {
-    console.log(search);
     if (!search) {
       fetchProducts();
     } else {
@@ -54,26 +61,27 @@ const ProductList = (props: Props) => {
   return (
     <>
       <Header />
+      <div className="max-w-[1700px] mx-auto md:max-w-[1700px]">
+        <div className="flex mt-12 mx-10 md:mx-auto justify-between flex-wrap">
+          <div>
+            <Typography variant="h2">Your Product Listings</Typography>
+          </div>
 
-      <div className="flex mt-12 mx-10 md:mx-44  justify-between flex-wrap">
-        <div>
-          <Typography variant="h2">Product Listings</Typography>
+          <Search search={search} setSearch={setSearch} />
         </div>
 
-        <Search search={search} setSearch={setSearch} />
-      </div>
-
-      <div className="flex flex-wrap gap-20 justify-start mx-44 mt-8 flex-row">
-        {data.map((item, index) => (
-          <ProductCard
-            id={item.id}
-            onDelete={deleteProduct}
-            image={item.file_path}
-            description={item.description}
-            price={`$ ${item.price}`}
-            name={item.name}
-          />
-        ))}
+        <div className="flex flex-wrap justify-start  gap-7  mt-8 flex-row">
+          {data.map((item, index) => (
+            <ProductCard
+              id={item.id}
+              onDelete={deleteProduct}
+              image={item.file_path}
+              description={item.description}
+              price={`$ ${item.price}`}
+              name={item.name}
+            />
+          ))}
+        </div>
       </div>
     </>
   );

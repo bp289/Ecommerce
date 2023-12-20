@@ -32,10 +32,10 @@ const NavList = (): JSX.Element => {
 
           <Typography as="li" variant="small" color="blue-gray">
             <Link
-              to="/"
+              to="/userListing"
               className="flex items-center hover:text-blue-500 transition-colors "
             >
-              Product Listing
+              View Your Listings
             </Link>
           </Typography>
           <Typography as="li" variant="small" color="blue-gray">
@@ -43,7 +43,7 @@ const NavList = (): JSX.Element => {
               to="/add"
               className="flex items-center hover:text-blue-500 transition-colors "
             >
-              Add Items
+              Create listing
             </Link>
           </Typography>
           <Menu>
@@ -76,7 +76,7 @@ const NavList = (): JSX.Element => {
 const Header = (props: Props) => {
   return (
     <Navbar fullWidth={true} className="mx-auto px-6 py-3">
-      <div className="flex items-center justify-between text-blue-gray-900">
+      <div className="flex items-center justify-between mx-auto md:max-w-[1700px] text-blue-gray-900">
         <Typography
           as="a"
           href="/"
@@ -85,9 +85,8 @@ const Header = (props: Props) => {
         >
           Home
         </Typography>
-        <div className="hidden lg:block">
-          <NavList />
-        </div>
+
+        <NavList />
       </div>
     </Navbar>
   );

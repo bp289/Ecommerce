@@ -1,9 +1,8 @@
 import {
-  Card,
   Input,
   Typography,
   Button,
-  Alert,
+  Textarea,
   Dialog,
   DialogFooter,
   DialogBody,
@@ -67,36 +66,39 @@ const AddProduct = (props: Props) => {
         </DialogFooter>
       </Dialog>
       <Header />
-      <Typography variant="h1">Add products</Typography>
-      <Card>
-        <Input
-          label="name"
-          crossOrigin={undefined}
-          type="text"
-          className="form-control"
-          onChange={(e) => setName(e.target.value)}
-        ></Input>
-
-        <Input
-          label="price"
-          crossOrigin={undefined}
-          type="text"
-          className="form-control"
-          onChange={(e) => setPrice(e.target.value)}
-        ></Input>
-        <Input
-          label="description"
-          crossOrigin={undefined}
-          type="text"
-          className="form-control"
-          onChange={(e) => setDescription(e.target.value)}
-        ></Input>
-        <input
-          type="file"
-          onChange={(e) => setFile(e.target.files![0])}
-        ></input>
-        <Button onClick={addProduct}>Add Item</Button>
-      </Card>
+      <div className="max-w-[1700px] lg:mx-auto mt-12 mb-6 md:max-w-[1700px]">
+        <Typography variant="h1">Item Details</Typography>
+        <div className="flex flex-col justify-start items-start md:w-[50rem] gap-10">
+          <div className="flex flex-col justify-start items-start md:w-[50rem] gap-10">
+            {" "}
+            <Input
+              label="name"
+              crossOrigin={undefined}
+              type="text"
+              className="form-control"
+              onChange={(e) => setName(e.target.value)}
+            ></Input>
+            <Input
+              label="price"
+              crossOrigin={undefined}
+              type="number"
+              className="form-control"
+              onChange={(e) => setPrice(e.target.value)}
+            ></Input>
+          </div>
+          <Textarea
+            resize={true}
+            label="description"
+            className="form-control m-auto"
+            onChange={(e) => setDescription(e.target.value)}
+          ></Textarea>
+          <input
+            type="file"
+            onChange={(e) => setFile(e.target.files![0])}
+          ></input>
+          <Button onClick={addProduct}>List item</Button>
+        </div>
+      </div>
     </>
   );
 };

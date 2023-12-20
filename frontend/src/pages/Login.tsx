@@ -29,8 +29,12 @@ const Login = (props: Props) => {
       });
 
       const resultJson = await result.json();
-      localStorage.setItem("user-info", JSON.stringify(resultJson));
-      navigate("/");
+      if (resultJson.invalid) {
+        alert(resultJson.invalid);
+      } else {
+        localStorage.setItem("user-info", JSON.stringify(resultJson));
+        navigate("/");
+      }
     } catch (e) {
       console.error(e);
       throw e;

@@ -1,6 +1,6 @@
 import { Input, Button } from "@material-tailwind/react";
 import React, { useState } from "react";
-
+import { SunIcon } from "@heroicons/react/20/solid";
 type Props = {
   search: string;
   setSearch: React.Dispatch<React.SetStateAction<string>>;

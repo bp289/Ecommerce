@@ -44,7 +44,7 @@ const ProductCard = ({
         name={name}
         id={id}
       />
-      <Card className="mt-6 w-96">
+      <Card className="mt-6 w-96 h-[42rem]">
         <CardHeader
           floated={false}
           color="blue-gray"
