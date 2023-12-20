@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
-    function addProduct(Request $req) {
+    function addProduct($id, Request $req) {
 
         try {
         $validated = $req->validate([
@@ -17,12 +17,14 @@ class ProductController extends Controller
             'price' => 'required',
             'description' => 'required',
             'file' => 'required|file',
+            'user_id' => 'required',
         ]);
 
         $product = new Product();
         $product->name = $validated['name'];
         $product->price = $validated['price'];
         $product->description = $validated['description'];
+        $product->user_id = $validated['user_id'];
         $product->file_path = $req->file('file')->store('products');
         $product->save();
 
@@ -37,6 +39,10 @@ class ProductController extends Controller
 
     function list(){
         return Product::all();
+    }
+    
+    function listForUser($user_id){
+        return Product::where('user_id', '=', "$user_id")->get();
     }
 
     function delete($id){
@@ -85,7 +91,7 @@ class ProductController extends Controller
                 $product->save();
             }
 
-        return response('Product Created succesfully', 200);
+        return response('Product created succesfully', 200);
         } catch (ValidationException $e) {
 
             $message = $e->errors();
